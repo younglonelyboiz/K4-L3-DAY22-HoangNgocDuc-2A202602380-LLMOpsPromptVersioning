@@ -1,0 +1,187 @@
+============================================================
+  Bước 2: Prompt Hub & A/B Routing
+============================================================
+✅ Config OK  |  Provider: OLLAMA  |  Project: day22-lab
+⚠️  V1 lỗi: Conflict for /commits/-/hoang-ngoc-duc-rag-prompt-v1. HTTPError('409 Client Error: Conflict for url: https://api.smith.langchain.com/commits/-/hoang-ngoc-duc-rag-prompt-v1', '{"error":"Nothing to commit: prompt has not changed since latest commit"}\n')
+⚠️  V2 lỗi: Conflict for /commits/-/hoang-ngoc-duc-rag-prompt-v2. HTTPError('409 Client Error: Conflict for url: https://api.smith.langchain.com/commits/-/hoang-ngoc-duc-rag-prompt-v2', '{"error":"Nothing to commit: prompt has not changed since latest commit"}\n')
+↓ Đã pull 'hoang-ngoc-duc-rag-prompt-v1' từ Hub
+↓ Đã pull 'hoang-ngoc-duc-rag-prompt-v2' từ Hub
+🔨 Đang tạo FAISS index từ 107 chunks ...
+   ⏳ Batch 1/3 (50 chunks) ...
+   ⏳ Batch 2/3 (50 chunks) ...
+   ⏳ Batch 3/3 (7 chunks) ...
+💾 Đã lưu FAISS vectorstore vào cache: /home/hoangduc/Documents/track2/K4-L3-DAY22-HoangNgocDuc-2A202602380-LLMOpsPromptVersioning/data/faiss_index
+✅ FAISS vectorstore đã sẵn sàng.
+[01/50] [prompt-v2] Q: What are the three main types of machine learning?
+       A: Có ba loại chính của học máy: 
+
+- Học máy hướng dẫn (Supervised learning): Trong loại này, mô hình đ...
+
+[02/50] [prompt-v2] Q: What is overfitting in machine learning?
+       A: Overfitting là tình trạng khi một mô hình học tập dữ liệu đào tạo quá tốt, bao gồm cả dữ liệu ngẫu n...
+
+[03/50] [prompt-v1] Q: Explain the bias-variance tradeoff.
+       A: Bias-variance tradeoff là một khái niệm quan trọng trong học máy. Nó mô tả mối quan hệ giữa độ sai l...
+
+[04/50] [prompt-v1] Q: How does regularization prevent overfitting?
+       A: Regularization prevents overfitting by adding a penalty term to the loss function that discourages o...
+
+[05/50] [prompt-v2] Q: What is cross-validation?
+       A: Cross-validation là một kỹ thuật đánh giá hiệu suất của mô hình, giúp cung cấp một ước tính hiệu suấ...
+
+[06/50] [prompt-v2] Q: What is backpropagation?
+       A: Backpropagation là một thuật toán cơ bản được sử dụng để đào tạo mạng thần kinh nhân tạo. Nó tính to...
+
+[07/50] [prompt-v2] Q: What are Convolutional Neural Networks primarily used for?
+       A: Convolutional Neural Networks (CNNs) are primarily used for processing grid-like data, such as image...
+
+[08/50] [prompt-v2] Q: How do LSTM networks address the vanishing gradient problem?
+       A: LSTM networks address the vanishing gradient problem by using gating mechanisms that control informa...
+
+[09/50] [prompt-v1] Q: What activation functions are commonly used in neural networ
+       A: Các hoạt động kích hoạt (activation functions) phổ biến được sử dụng trong mạng thần kinh neuron bao...
+
+[10/50] [prompt-v2] Q: What is the role of pooling layers in CNNs?
+       A: Poolng layers trong CNNs (Convolutional Neural Networks) có vai trò quan trọng là giảm độ phân giải,...
+
+[11/50] [prompt-v1] Q: What is the transformer architecture?
+       A: Transformer là một kiến trúc học máy tính được giới thiệu lần đầu tiên trong bài viết "Attention Is ...
+
+[12/50] [prompt-v1] Q: What are word embeddings?
+       A: Word embeddings là các đại diện dense (được giảm xuống thành các giá trị số) của từ, bắt đầu từ ý ng...
+
+[13/50] [prompt-v2] Q: What is transfer learning in NLP?
+       A: Transfer learning trong NLP là phương pháp sử dụng mô hình đã được đào tạo trên một bộ dữ liệu lớn đ...
+
+[14/50] [prompt-v1] Q: How does BERT handle language understanding?
+       A: BERT (Bidirectional Encoder Representations from Transformers) handles language understanding by lea...
+
+[15/50] [prompt-v2] Q: What is self-attention in transformers?
+       A: Self-attention là cơ chế quan trọng giúp cho mô hình transformer có sức mạnh. Self-attention cho phé...
+
+[16/50] [prompt-v1] Q: What is GPT and how is it trained?
+       A: GPT (Generative Pre-trained Transformer) là một gia đình các mô hình ngôn ngữ tự tạo được phát triển...
+
+[17/50] [prompt-v2] Q: What is instruction tuning?
+       A: Instruction tuning là một kỹ thuật fine-tuning được điều khiển bởi người dùng để làm cho mô hình LLM...
+
+[18/50] [prompt-v2] Q: What is RLHF?
+       A: Reinforcement Learning from Human Feedback (RLHF) là một kỹ thuật được sử dụng để điều chỉnh các mô ...
+
+[19/50] [prompt-v1] Q: What is chain-of-thought prompting?
+       A: Chain-of-thought prompting là một kỹ thuật giúp cải thiện khả năng suy luận của mô hình ngôn ngữ lớn...
+
+[20/50] [prompt-v2] Q: What is the context length of GPT-4?
+       A: GPT-4 hỗ trợ lên đến 128K token của ngữ cảnh, cho phép nó xử lý và tạo ra các tài liệu, cơ sở dữ liệ...
+
+[21/50] [prompt-v1] Q: What is Retrieval-Augmented Generation?
+       A: Retrieval-Augmented Generation (RAG) là một phương pháp kết hợp giữa mô hình ngôn ngữ học (LLM) và t...
+
+[22/50] [prompt-v1] Q: What are the main components of a RAG pipeline?
+       A: Cả hai thành phần chính của một pipeline RAG (Retrieval-Augmented Generation) là:
+
+1. Retriever: Tìm...
+
+[23/50] [prompt-v2] Q: What is dense retrieval?
+       A: Dense retrieval là một phương pháp truy vấn tài liệu sử dụng phương pháp học sâu để mã hóa các câu h...
+
+[24/50] [prompt-v1] Q: Why is chunking strategy important in RAG?
+       A: Chunking strategy là quan trọng trong RAG vì nó ảnh hưởng đến độ chính xác của pipeline RAG (Retriev...
+
+[25/50] [prompt-v2] Q: What advanced RAG techniques exist beyond basic retrieval?
+       A: Các kỹ thuật RAG tiên tiến bao gồm re-ranking, query expansion, HyDE (Hypothetical Document Embeddin...
+
+[26/50] [prompt-v1] Q: What are vector databases used for?
+       A: Vector databases được sử dụng để quản lý và truy vấn các vectơ cao chiều (high-dimensional vectors) ...
+
+[27/50] [prompt-v2] Q: What is FAISS?
+       A: FAISS (Facebook AI Similarity Search) là một thư viện hiệu quả cho tìm kiếm tương tự hỗ trợ cả neare...
+
+[28/50] [prompt-v2] Q: How do text embeddings capture semantic meaning?
+       A: Text embeddings capture semantic meaning by converting text into numerical vectors where semanticall...
+
+[29/50] [prompt-v2] Q: What is HNSW?
+       A: HNSW (Hierarchical Navigable Small World) là một thuật toán graph-based cho tìm kiếm gần nhất gần (a...
+
+[30/50] [prompt-v2] Q: What is hybrid search in vector databases?
+       A: Hybrid search trong các cơ sở dữ liệu vectơ (vector databases) là một phương pháp kết hợp giữa các t...
+
+[31/50] [prompt-v2] Q: What is LangChain?
+       A: LangChain là một framework mở (open-source) giúp dễ dàng xây dựng các ứng dụng với mô hình ngôn ngữ ...
+
+[32/50] [prompt-v2] Q: What is LangChain Expression Language (LCEL)?
+       A: LangChain Expression Language (LCEL) là một ngôn ngữ declarative để tạo thành các thành phần của Lan...
+
+[33/50] [prompt-v1] Q: What is LangGraph?
+       A: LangGraph là một mở rộng của LangChain, được thiết kế để xây dựng các ứng dụng có tính chất, nhiều n...
+
+[34/50] [prompt-v2] Q: What memory types does LangChain support?
+       A: LangChain hỗ trợ các loại bộ nhớ sau:
+
+- ConversationBufferMemory: lưu trữ toàn bộ lịch sử cuộc trò ...
+
+[35/50] [prompt-v1] Q: What are LangChain retrievers?
+       A: LangChain retrievers là các thành phần fetch relevant documents (đây là các tài liệu liên quan) được...
+
+[36/50] [prompt-v2] Q: What is LangSmith?
+       A: LangSmith là một nền tảng phát triển cho việc xây dựng ứng dụng LLM (Large Language Model) chất lượn...
+
+[37/50] [prompt-v2] Q: What information do LangSmith traces capture?
+       A: LangSmith traces capture các thông tin sau:
+
+- Inputs
+- Outputs
+- Latency
+- Token usage
+- Errors
+- S...
+
+[38/50] [prompt-v1] Q: What is the LangSmith Prompt Hub?
+       A: LangSmith Prompt Hub là một kho lưu trữ trung tâm để quản lý các mẫu prompt. Nó hỗ trợ việc lưu trữ,...
+
+[39/50] [prompt-v2] Q: How does LangSmith help monitor production LLM applications?
+       A: LangSmith giúp giám sát ứng dụng LLM sản xuất bằng cách cung cấp các chỉ số như tỷ lệ percentil độ t...
+
+[40/50] [prompt-v2] Q: What are LangSmith datasets used for?
+       A: LangSmith datasets là các tập dữ liệu mẫu nhập liệu và kết quả mong đợi được sử dụng cho việc đánh g...
+
+[41/50] [prompt-v2] Q: What is RAGAS?
+       A: RAGAS là một framework được thiết kế đặc biệt để đánh giá các pipeline RAG (Retrieval-Augmented Gene...
+
+[42/50] [prompt-v1] Q: How does RAGAS compute faithfulness?
+       A: RAGAS (Retrieval-Augmented Generalized Agreement Score System) tính faithfulness bằng cách:
+
+1. Tách...
+
+[43/50] [prompt-v2] Q: What is answer relevancy in RAGAS?
+       A: Answer relevancy in RAGAS là một metric đánh giá độ phù hợp của câu trả lời với câu hỏi ban đầu. Nó ...
+
+[44/50] [prompt-v2] Q: What is context recall in RAGAS?
+       A: Context recall trong RAGAS là một metric đánh giá khả năng của hệ thống trả lời (RAG) trong việc thu...
+
+[45/50] [prompt-v1] Q: What inputs does RAGAS evaluation require?
+       A: RAGAS evaluation yêu cầu các input sau:
+
+- User queries (hỏi của người dùng)
+- Generated answers (đá...
+
+[46/50] [prompt-v2] Q: What is Guardrails AI?
+       A: Guardrails AI là một framework mở (open-source) cho phép thêm các lớp an toàn và kiểm tra hợp lệ vào...
+
+[47/50] [prompt-v1] Q: What is PII and why is it important to detect in LLM respons
+       A: PII (Personally Identifiable Information) là thông tin có thể xác định một cá nhân, chẳng hạn như tê...
+
+[48/50] [prompt-v1] Q: What does structured output validation ensure?
+       A: Structured output validation ensures rằng LLM (Language Model) trả lời tuân thủ các định dạng dữ liệ...
+
+[49/50] [prompt-v2] Q: What is Constitutional AI?
+       A: Constitutional AI là một phương pháp nhằm điều chỉnh các mô hình ngôn ngữ để tuân thủ các nguyên tắc...
+
+[50/50] [prompt-v2] Q: What are common AI safety concerns with LLMs?
+       A: Các mối lo ngại về an toàn của AI liên quan đến mô hình ngôn ngữ lớn (LLM) bao gồm:
+
+- Hallucination...
+
+
+📊 Routing: V1=19 câu | V2=31 câu | Tổng=50
+✅ Bước 2 hoàn thành! Kiểm tra Prompt Hub và traces trên LangSmith.
